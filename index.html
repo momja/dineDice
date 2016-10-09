@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Google Places Finder</title>
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel=
+'stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<meta name="viewport" content=
+"initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      height: 60%;
+    }
+</style>
+<div id="map"></div>
+<a onclick="calculateReccommendation()" class="button"><span>Roll
+For Restaurant</span></a>
+<div id='div1'>
+<p id="option1"></p>
+</div>
+<script src=
+"https://maps.googleapis.com/maps/api/js?key=AIzaSyDJTJhUbNekFRGG147xonaJj0AwMDLBFQI&amp;libraries=places&amp;callback=initMap"
+async defer>
+</script>
+<script src="js/index.js">
+</script>
+</body>
+</html>
