@@ -68,7 +68,7 @@ function addMarker(place) {
     map: map,
     position: place.geometry.location,
     icon: {
-      url: 'https://d30y9cdsu7xlg0.cloudfront.net/png/131616-200.png',
+      url: 'http://www.iconarchive.com/download/i77858/seanau/flat-app/Foods.ico',
       anchor: new google.maps.Point(35,30),
       scaledSize: new google.maps.Size(70,70)
     }
