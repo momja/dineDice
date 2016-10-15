@@ -68,7 +68,7 @@ function addMarker(place) {
     map: map,
     position: place.geometry.location,
     icon: {
-      url: 'http://www.iconarchive.com/download/i77858/seanau/flat-app/Foods.ico',
+      url: 'http://www.freeiconspng.com/uploads/pizza-slice-icon-6.png',
       anchor: new google.maps.Point(35,30),
       scaledSize: new google.maps.Size(70,70)
     }
