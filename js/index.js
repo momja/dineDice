@@ -45,7 +45,7 @@ function performSearch() {
         var request = {
           bounds: map.getBounds(),
           keyword: 'restaurant',
-          types: ['restaurant']
+          type: ['restaurant']
         };
         service.radarSearch(request, callback);
       }
