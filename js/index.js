@@ -39,17 +39,15 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow();
   service = new google.maps.places.PlacesService(map);
 
+  google.maps.event.addDomListener(window, 'load', performSearch);
+}
+
+function performSearch() {
   var request = {
     bounds: map.getBounds(),
     type: ['restaurant']
   };
   service.radarSearch(request, callback);
-  
-  map.addListener('idle', performSearch);
-}
-
-function performSearch() {
-
 }
 
 function callback(results, status) {
