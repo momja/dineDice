@@ -44,7 +44,7 @@ function initMap() {
 
 function performSearch() {
         var request = {
-          bounds:map.getBounds(),
+          bounds: map.getBounds(),
           type: ['restaurant']
         };
         service.radarSearch(request, callback);
@@ -86,4 +86,5 @@ function calculateReccommendation() {
   randomChoice = Math.floor(Math.random() * nearbyPlaces.length);
   var reccommendation = document.getElementById("option1");
   reccommendation.innerHTML = nearbyPlaces[randomChoice];
+  nearbyPlaces.splice(randomChoice, 1);
 }
