@@ -59,7 +59,7 @@ function callback(results, status) {
     console.error(status);
     return;
   }
-  for (var i = 0; i < results.length; i++) {
+  for (var i = 0, result; result = results[i]; i++) {
     addMarker(result);
   }
 }
