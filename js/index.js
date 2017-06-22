@@ -69,7 +69,7 @@ function callback(results, status) {
                 service = new google.maps.places.PlacesService(map);
                 setTimeout(function() {
                     service.getDetails(request, callback);
-                }, j*1000);
+                }, j*50);
 
 
             })(i);
@@ -80,10 +80,10 @@ function callback(results, status) {
                     console.log(place.name +  results.length + nearbyPlaces.length);
                     nearbyPlaces.push(place);
 
-                    if(results.length == agencies.length){
+                    if(results.length == nearbyPlaces.length){
                         console.log(nearbyPlaces);
                         var request = new XMLHttpRequest();
-                        request.open('POST', 'http://localhost/agency-map/src/save.php', true);
+                        request.open('POST', 'http://localhost/nearbyPlaces-map/src/save.php', true);
                         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
                         request.send(JSON.stringify(nearbyPlaces));
                     }
