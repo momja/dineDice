@@ -49,7 +49,7 @@ function performSearch() {
           location: currentLocation,
           // distance in meters
           radius: '1000',
-          keyword:'restaurant',
+          type: ['restaurant']
         };
         service.radarSearch(request, callback);
       }
