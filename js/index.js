@@ -41,7 +41,7 @@ function initMap() {
 
   // The idle event is a debounced event, so we can query & listen without
   // throwing too many requests at the server.
-  map.addListener('idle', performSearch);
+  performSearch();
 }
 
 function performSearch() {
