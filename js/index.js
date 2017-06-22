@@ -82,10 +82,6 @@ function callback(results, status) {
 
                     if(results.length == nearbyPlaces.length){
                         console.log(nearbyPlaces);
-                        var request = new XMLHttpRequest();
-                        request.open('POST', 'http://localhost/nearbyPlaces-map/src/save.php', true);
-                        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-                        request.send(JSON.stringify(nearbyPlaces));
                     }
                 }
             }
