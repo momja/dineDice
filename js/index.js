@@ -39,16 +39,14 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow();
   service = new google.maps.places.PlacesService(map);
 
-  // The idle event is a debounced event, so we can query & listen without
-  // throwing too many requests at the server.
   performSearch();
 }
 
 function performSearch() {
         var request = {
+          radius: '1000',
           location: currentLocation,
           // distance in meters
-          radius: '1000',
           type: ['restaurant']
         };
         service.radarSearch(request, callback);
