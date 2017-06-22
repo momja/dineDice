@@ -43,11 +43,11 @@ function initMap() {
 
 function performSearch() {
         var request = {
-          bounds: map.getBounds(),
-          keyword: 'restaurant',
-          type: ['restaurant']
+          location: pos,
+          radius: 5,
+          type: 'restaurant'
         };
-        service.radarSearch(request, callback);
+        service.nearbySearch(request, callback);
       }
 
 function callback(results, status) {
@@ -55,10 +55,8 @@ function callback(results, status) {
     console.error(status);
     return;
   }
-  for (var i = 0, result; result = results[i]; i++) {
-    if (result.rating >= 3.0) {
-      addMarker(result);
-    }
+  for (var i = 0; i < results.length; i++) {
+    addMarker(result);
   }
 }
 
