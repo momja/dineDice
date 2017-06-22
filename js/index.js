@@ -39,7 +39,7 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow();
   service = new google.maps.places.PlacesService(map);
 
-  map.addListerner('idle', performSearch());
+  map.addListerner('idle', performSearch;
 }
 
 function performSearch() {
