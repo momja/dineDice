@@ -24,7 +24,6 @@ function initMap() {
       };
 
       currentLocation = pos;
-      console.log(currentLocation);
       
       infoWindow.setPosition(pos);
       infoWindow.setContent('Location found.');
