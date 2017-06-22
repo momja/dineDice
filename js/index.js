@@ -56,7 +56,9 @@ function callback(results, status) {
     return;
   }
   for (var i = 0, result; result = results[i]; i++) {
-    addMarker(result);
+    if (result.rating >= 3.0) {
+      addMarker(result);
+    }
   }
 }
 
