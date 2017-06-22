@@ -5,7 +5,7 @@
 var map;
 var infoWindow;
 var service;
-var location
+var currentLocation
 
 var nearbyPlaces = [];
 
@@ -23,7 +23,7 @@ function initMap() {
         lng: position.coords.longitude
       };
 
-      location = pos;
+      currentLocation = pos;
 
       infoWindow.setPosition(pos);
       infoWindow.setContent('Location found.');
@@ -46,10 +46,11 @@ function initMap() {
 
 function performSearch() {
         var request = {
-          location: location,
+          location: currentLocation,
           radius: '5',
           type: ['restaurant']
         };
+        alert("here we go!");
         service.nearbySearch(request, callback);
       }
 
