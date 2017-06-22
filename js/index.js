@@ -24,7 +24,6 @@ function initMap() {
       };
 
       currentLocation = pos;
-      map.addListener('idle', performSearch);
 
       infoWindow.setPosition(pos);
       infoWindow.setContent('Location found.');
@@ -42,7 +41,7 @@ function initMap() {
 
   // The idle event is a debounced event, so we can query & listen without
   // throwing too many requests at the server.
-
+  map.addListener('idle', performSearch);
 }
 
 function performSearch() {
