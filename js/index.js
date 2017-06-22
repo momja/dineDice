@@ -47,10 +47,11 @@ function initMap() {
 function performSearch() {
         var request = {
           location: currentLocation,
+          // distance in meters
           radius: '5000',
           type: ['restaurant']
         };
-        service.nearbySearch(request, callback);
+        service.radarSearch(request, callback);
       }
 
 function callback(results, status) {
