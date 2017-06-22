@@ -76,7 +76,7 @@ function callback(results, status) {
 
             function callback(place, status) {
                 if (status == google.maps.places.PlacesServiceStatus.OK) {
-                    createMarker(place);
+                    addMarker(place);
                     console.log(place.name +  results.length + nearbyPlaces.length);
                     nearbyPlaces.push(place);
 
