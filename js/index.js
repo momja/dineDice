@@ -49,20 +49,50 @@ function performSearch() {
           location: currentLocation,
           // distance in meters
           radius: '500',
-          type: ['restaurant']
+          type: 'restaurant',
         };
         service.radarSearch(request, callback);
       }
 
 function callback(results, status) {
-  if (status !== google.maps.places.PlacesServiceStatus.OK) {
-    console.error(status);
-    return;
-  }
-  for (var i = 0, result; result = results[i]; i++) {
-    addMarker(result);
-  }
+    console.log(results.length);
+    console.log(results);
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+
+            //Using setTimeout and closure because limit of 10 queries /second for getDetails */
+            (function (j) {
+                var request = {
+                    placeId: results[i]['place_id']
+                };
+
+                service = new google.maps.places.PlacesService(map);
+                setTimeout(function() {
+                    service.getDetails(request, callback);
+                }, j*1000);
+
+
+            })(i);
+
+            function callback(place, status) {
+                if (status == google.maps.places.PlacesServiceStatus.OK) {
+                    createMarker(place);
+                    console.log(place.name +  results.length + agencies.length);
+                    agencies.push([place.name, place.website, place.rating]);
+
+                    if(results.length == agencies.length){
+                        console.log(agencies);
+                        var request = new XMLHttpRequest();
+                        request.open('POST', 'http://localhost/agency-map/src/save.php', true);
+                        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+                        request.send(JSON.stringify(agencies));
+                    }
+                }
+            }
+        }
+    }
 }
+
 
 function addMarker(place) {
   service.getDetails(place, function(result, status) {
