@@ -51,7 +51,7 @@ function performSearch() {
           radius: '500',
           type: ['restaurant'],
         };
-        service.radarSearch(request, callback);
+        service.nearbySearch(request, callback);
       }
 
 function callback(results, status) {
