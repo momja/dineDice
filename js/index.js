@@ -5,7 +5,7 @@
 var map;
 var infoWindow;
 var service;
-var currentLocation
+var currentLocation;
 
 var nearbyPlaces = [];
 
@@ -46,7 +46,7 @@ function initMap() {
 
 function performSearch() {
         var request = {
-          bounds: map.getBounds(),,
+          location: currentLocation,
           // distance in meters
           radius: '5000',
           type: ['restaurant']
