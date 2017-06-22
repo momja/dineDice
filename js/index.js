@@ -6,6 +6,7 @@ var map;
 var infoWindow;
 var service;
 var currentLocation;
+var searchRadius;
 
 var nearbyPlaces = [];
 
@@ -36,6 +37,22 @@ function initMap() {
     handleLocationError(false, infoWindow, map.getCenter());
   }
 
+  searchRadius = 5000;
+
+  var radiusOptions = {
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.1,
+        strokeWeight: 2,
+        fillColor: '#FF0000',
+        fillOpacity: 0.075,
+        map: map,
+        center: currentLocation,
+        radius: searchRadius
+    };
+
+    // Add the circle for this city to the map.
+    cityCircle = new google.maps.Circle(radiusOptions);
+
   infoWindow = new google.maps.InfoWindow();
   service = new google.maps.places.PlacesService(map);
 
@@ -44,7 +61,8 @@ function initMap() {
 
 function performSearch() {
   var request = {
-    bounds: map.getBounds(),
+    location: currentLocation,
+    radius: searchRadius,
     type: ['restaurant']
   };
   service.radarSearch(request, callback);
