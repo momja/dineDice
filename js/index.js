@@ -48,45 +48,20 @@ function performSearch() {
         var request = {
           location: currentLocation,
           // distance in meters
-          radius: '500',
+          radius: '5000',
           type: ['restaurant'],
         };
         service.radarSearch(request, callback);
       }
 
 function callback(results, status) {
-    console.log(results.length);
-    console.log(results);
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-
-            //Using setTimeout and closure because limit of 10 queries /second for getDetails */
-            (function (j) {
-                var request = {
-                    placeId: results[i]['place_id']
-                };
-
-                service = new google.maps.places.PlacesService(map);
-                setTimeout(function() {
-                    service.getDetails(request, callback);
-                }, j*50);
-
-
-            })(i);
-
-            function callback(place, status) {
-                if (status == google.maps.places.PlacesServiceStatus.OK) {
-                    addMarker(place);
-                    console.log(place.name +  results.length + nearbyPlaces.length);
-                    nearbyPlaces.push(place);
-
-                    if(results.length == nearbyPlaces.length){
-                        console.log(nearbyPlaces);
-                    }
-                }
-            }
+        if (status !== google.maps.places.PlacesServiceStatus.OK) {
+          console.error(status);
+          return;
         }
-    }
+        for (var i = 0, result; result = results[i]; i++) {
+          addMarker(result);
+        }
 }
 
 
