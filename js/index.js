@@ -48,7 +48,7 @@ function performSearch() {
         var request = {
           location: currentLocation,
           // distance in meters
-          radius: '5000',
+          radius: '500',
           type: ['restaurant']
         };
         service.radarSearch(request, callback);
