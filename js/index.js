@@ -77,15 +77,15 @@ function callback(results, status) {
             function callback(place, status) {
                 if (status == google.maps.places.PlacesServiceStatus.OK) {
                     createMarker(place);
-                    console.log(place.name +  results.length + agencies.length);
-                    agencies.push([place.name, place.website, place.rating]);
+                    console.log(place.name +  results.length + nearbyPlaces.length);
+                    nearbyPlaces.push(place);
 
                     if(results.length == agencies.length){
-                        console.log(agencies);
+                        console.log(nearbyPlaces);
                         var request = new XMLHttpRequest();
                         request.open('POST', 'http://localhost/agency-map/src/save.php', true);
                         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-                        request.send(JSON.stringify(agencies));
+                        request.send(JSON.stringify(nearbyPlaces));
                     }
                 }
             }
