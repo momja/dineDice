@@ -46,7 +46,7 @@ function initMap() {
 
 function performSearch() {
         var request = {
-          location: currentLocation,
+          bounds: map.getBounds(),,
           // distance in meters
           radius: '5000',
           type: ['restaurant']
