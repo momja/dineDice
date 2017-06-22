@@ -24,7 +24,7 @@ function initMap() {
       };
 
       currentLocation = pos;
-      
+
       infoWindow.setPosition(pos);
       infoWindow.setContent('Location found.');
       map.setCenter(pos);
@@ -51,7 +51,7 @@ function performSearch() {
           radius: '500',
           type: ['restaurant'],
         };
-        service.nearbySearch(request, callback);
+        service.radarSearch(request, callback);
       }
 
 function callback(results, status) {
