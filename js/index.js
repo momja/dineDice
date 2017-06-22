@@ -47,7 +47,7 @@ function initMap() {
 function performSearch() {
         var request = {
           location: location,
-          radius: 5,
+          radius: '5',
           type: ['restaurant']
         };
         service.nearbySearch(request, callback);
