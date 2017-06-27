@@ -27,6 +27,23 @@ function initMap() {
       infoWindow.setPosition(pos);
       infoWindow.setContent('Location found.');
       map.setCenter(pos);
+
+      searchRadius = 5000;
+
+      var radiusOptions = {
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.1,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.075,
+            map: map,
+            center: currentPosition,
+            radius: searchRadius
+        };
+
+        // Add the circle for this city to the map.
+        cityCircle = new google.maps.Circle(radiusOptions);
+
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
     });
@@ -36,23 +53,6 @@ function initMap() {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
-
-  currentPosition = map.getCenter();
-  searchRadius = 5000;
-
-  var radiusOptions = {
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.1,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        fillOpacity: 0.075,
-        map: map,
-        center: currentPosition,
-        radius: searchRadius
-    };
-
-    // Add the circle for this city to the map.
-    cityCircle = new google.maps.Circle(radiusOptions);
 
   infoWindow = new google.maps.InfoWindow();
   service = new google.maps.places.PlacesService(map);
@@ -78,7 +78,6 @@ function callback(results, status) {
           addMarker(result);
         }
 }
-
 
 function addMarker(place) {
   service.getDetails(place, function(result, status) {
