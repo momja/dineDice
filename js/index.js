@@ -6,7 +6,6 @@ var map;
 var infoWindow;
 var service;
 var searchRadius;
-var currentPosition;
 
 var nearbyPlaces = [];
 
@@ -44,6 +43,8 @@ function initMap() {
         // Add the circle for this city to the map.
         cityCircle = new google.maps.Circle(radiusOptions);
 
+        performSearch(pos);
+
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
     });
@@ -57,12 +58,11 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow();
   service = new google.maps.places.PlacesService(map);
 
-  google.maps.event.addDomListener(window, 'load', performSearch);
 }
 
-function performSearch() {
+function performSearch(pos) {
   var request = {
-    location: currentPosition,
+    location: pos,
     radius: searchRadius,
     type: ['restaurant']
   };
