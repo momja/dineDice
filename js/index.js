@@ -6,7 +6,7 @@ var map;
 var infoWindow;
 var service;
 var searchRadius;
-var pos;
+var currentPosition;
 
 var nearbyPlaces = [];
 
@@ -19,7 +19,7 @@ function initMap() {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      pos = {
+      var pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
@@ -30,11 +30,14 @@ function initMap() {
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
     });
-  } else {
+  }
+
+  else {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
 
+  currentPosition = map.getCenter();
   searchRadius = 5000;
 
   var radiusOptions = {
@@ -44,7 +47,7 @@ function initMap() {
         fillColor: '#FF0000',
         fillOpacity: 0.075,
         map: map,
-        center: pos,
+        center: currentPosition,
         radius: searchRadius
     };
 
@@ -59,7 +62,7 @@ function initMap() {
 
 function performSearch() {
   var request = {
-    location: pos,
+    location: currentPosition,
     radius: searchRadius,
     type: ['restaurant']
   };
