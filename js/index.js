@@ -64,7 +64,7 @@ function performSearch(pos) {
   var request = {
     location: pos,
     radius: searchRadius,
-    type: ['restaurant']
+    type: 'restaurant'
   };
   service.radarSearch(request, callback);
 }
