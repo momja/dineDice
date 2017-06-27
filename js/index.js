@@ -24,8 +24,6 @@ function initMap() {
         lng: position.coords.longitude
       };
 
-      currentLocation = pos;
-
       infoWindow.setPosition(pos);
       infoWindow.setContent('Location found.');
       map.setCenter(pos);
@@ -36,6 +34,8 @@ function initMap() {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
+
+  currentLocation = getCenter();
 
   searchRadius = 5000;
 
