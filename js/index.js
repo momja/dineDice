@@ -67,9 +67,6 @@ function performSearch(pos) {
     type: 'restaurant'
   };
   service.radarSearch(request, callback);
-  if (nearbyPlaces.length < 100) {
-    performSearch(pos);
-  }
 }
 
 function callback(results, status) {
