@@ -101,9 +101,13 @@ function addMarker(place) {
   });
 }
 
+function randomizeArray() {
+
+}
+
 function calculateReccommendation() {
-  randomChoice = Math.floor(Math.random() * nearbyPlaces.length);
   var reccommendation = document.getElementById("option1");
+  var randomChoice = Math.floor(Math.random() * nearbyPlaces.length);
   reccommendation.innerHTML = nearbyPlaces[randomChoice];
   nearbyPlaces.splice(randomChoice, 1);
 }
