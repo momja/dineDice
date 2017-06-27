@@ -37,7 +37,7 @@ function initMap() {
             fillColor: '#FF0000',
             fillOpacity: 0.075,
             map: map,
-            center: currentPosition,
+            center: pos,
             radius: searchRadius
         };
 
