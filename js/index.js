@@ -27,7 +27,7 @@ function initMap() {
       infoWindow.setContent('Location found.');
       map.setCenter(pos);
 
-      searchRadius = 5000;
+      searchRadius = 500;
 
       var radiusOptions = {
             strokeColor: '#FF0000',
