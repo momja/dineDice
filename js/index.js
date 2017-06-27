@@ -35,7 +35,7 @@ function initMap() {
     handleLocationError(false, infoWindow, map.getCenter());
   }
 
-  currentLocation = getCenter();
+  currentLocation = getCenter(map);
 
   searchRadius = 5000;
 
