@@ -81,6 +81,7 @@ function callback(results, status) {
 
 function addMarker(place) {
   service.getDetails(place, function(result, status) {
+    console.log(result.name);
     nearbyPlaces.push(result.name);
   });
   var marker = new google.maps.Marker({
