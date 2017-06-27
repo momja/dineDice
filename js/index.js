@@ -5,8 +5,8 @@
 var map;
 var infoWindow;
 var service;
-var currentLocation;
 var searchRadius;
+var pos;
 
 var nearbyPlaces = [];
 
@@ -19,7 +19,7 @@ function initMap() {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
+      pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
@@ -44,7 +44,7 @@ function initMap() {
         fillColor: '#FF0000',
         fillOpacity: 0.075,
         map: map,
-        center: currentLocation,
+        center: pos,
         radius: searchRadius
     };
 
@@ -59,7 +59,7 @@ function initMap() {
 
 function performSearch() {
   var request = {
-    location: currentLocation,
+    location: pos,
     radius: searchRadius,
     type: ['restaurant']
   };
