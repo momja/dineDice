@@ -84,8 +84,14 @@ function addMarker(place) {
   });
 }
 
-function calculateReccommendation() {
-  var reccommendation = document.getElementById("option1");
+function findPlace() {
   var randomChoice = Math.floor(Math.random() * nearbyPlaces.length);
-  reccommendation.innerHTML = nearbyPlaces[randomChoice];
+  place = nearbyPlaces[randomChoice];
+
+  service.getDetails(place, function(result, status) {
+    console.log("place found:" + result.name);
+
+    var reccommendation = document.getElementById("option1");
+    reccommendation.innerHTML = result.name;
+  }
 }
