@@ -90,12 +90,21 @@ function findPlace() {
 
   service.getDetails(place, function(result, status) {
     console.log("place found:" + result.name);
+    if (result.rating >= 3.0) {
+      var reccommendation = document.getElementById("option");
+      reccommendation.innerHTML = result.name;
 
-    var reccommendation = document.getElementById("option");
-    reccommendation.innerHTML = result.name;
+      var rating = document.getElementById("rating")
+      rating.innerHTML = result.rating;
 
-    var rating = document.getElementById("rating")
-    rating.innerHTML = result.rating;
+      var photo = document.getElementById("restaurantPhoto");
+      var pullPhoto = result.photos[0].getUrl();
+      photo.src = pullPhoto;
+    }
+
+    else {
+      findPlace();
+    }
 
   });
 }
