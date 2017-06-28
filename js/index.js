@@ -77,24 +77,10 @@ function callback(results, status) {
 }
 
 function addMarker(place) {
-  service.getDetails(place, function(result, status) {
-    console.log(result.name);
-    nearbyPlaces.push(result.name);
-  });
+  nearbyPlaces.push(place);
   var marker = new google.maps.Marker({
     map: map,
     position: place.geometry.location,
-  });
-
-  google.maps.event.addListener(marker, 'click', function() {
-    service.getDetails(place, function(result, status) {
-      if (status !== google.maps.places.PlacesServiceStatus.OK) {
-        console.error(status);
-        return;
-      }
-      infoWindow.setContent(result.name);
-      infoWindow.open(map, marker);
-    });
   });
 }
 
