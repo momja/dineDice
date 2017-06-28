@@ -97,10 +97,6 @@ function findPlace() {
       var rating = document.getElementById("rating")
       rating.innerHTML = result.rating;
 
-      var photo = document.getElementById("restaurantPhoto");
-      var pullPhoto = result.photos[0].getUrl();
-      console.log(pullPhoto);
-      photo.src = pullPhoto;
     }
 
     else {
