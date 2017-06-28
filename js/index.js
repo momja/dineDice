@@ -91,7 +91,11 @@ function findPlace() {
   service.getDetails(place, function(result, status) {
     console.log("place found:" + result.name);
 
-    var reccommendation = document.getElementById("option1");
+    var reccommendation = document.getElementById("option");
     reccommendation.innerHTML = result.name;
+
+    var rating = document.getElementById("rating")
+    rating.innerHTML = result.rating;
+
   });
 }
