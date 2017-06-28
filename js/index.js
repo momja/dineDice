@@ -99,6 +99,7 @@ function findPlace() {
 
       var photo = document.getElementById("restaurantPhoto");
       var pullPhoto = result.photos[0].getUrl();
+      console.log(pullPhoto);
       photo.src = pullPhoto;
     }
 
