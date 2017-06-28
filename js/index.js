@@ -93,5 +93,5 @@ function findPlace() {
 
     var reccommendation = document.getElementById("option1");
     reccommendation.innerHTML = result.name;
-  )};
+  });
 }
