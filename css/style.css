@@ -1,6 +1,6 @@
 body {
     text-align: center;
-    font-size: 50px;
+    font-size: 25px;
     color: #555;
     font-family: 'Pacifico', Arial, sans-serif;
 }
@@ -18,7 +18,7 @@ body {
     -moz-transition: -moz-box-shadow .1s ease-in-out;
     -o-transition: -o-box-shadow .1s ease-in-out;
     transition: box-shadow .1s ease-in-out;
-    font-size: 50px;
+    font-size: 30px;
     color: #fff;
 }
 
