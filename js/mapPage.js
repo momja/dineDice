@@ -1,6 +1,3 @@
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 var map;
 var service;
@@ -8,6 +5,7 @@ var searchRadius;
 
 var nearbyPlaces = [];
 
+// code starts here. begins by making map, finding your current location, and starts the search
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 13,
@@ -90,13 +88,12 @@ function findPlace() {
 
   service.getDetails(place, function(result, status) {
     console.log("place found:" + result.name);
-    if (result.rating >= 3.0 || result.rating != "McDonalds") {
+    if (result.rating >= 3.0) {
       var reccommendation = document.getElementById("option");
       reccommendation.innerHTML = result.name;
 
       var rating = document.getElementById("rating")
-      rating.innerHTML = "rating" + result.rating;
-
+      rating.innerHTML = "rating: " + result.rating;
     }
 
     else {
