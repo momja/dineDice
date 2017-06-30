@@ -96,7 +96,7 @@ function findPlace() {
 
   service.getDetails(place, function(result, status) {
     console.log("place found:" + result.name);
-    if (result.rating >= 3.0) {
+    if (result.rating >= 3.0 && result.name != "SUBWAY®Restaurants") {
       var reccommendation = document.getElementById("option");
       reccommendation.innerHTML = result.name;
 
