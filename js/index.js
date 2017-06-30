@@ -1,17 +1,7 @@
 
-// set the information so the next page can make use of them, and they can be remembered
-function setInformation() {
-  var radius = document.getElementById("distanceRange");
-  sessionStorage.setItem('radius', radius);
-
-  var price = document.getElementById("priceRange");
-  sessionStorage.setItem('price', price);
-}
-
-// fetch the information or set the default inputs
-function getInformation() {
-  var radius = sessionStorage.getItem('radius') || 5000;
-  var price = sessionStorage.getItem('price') || 2;
+function initInputPage() {
+  createDistanceSlider();
+  createPriceSlider();
 }
 
 // creates a distance slider with minimum range of 1 KM and max 20 KM
@@ -32,4 +22,19 @@ function createPriceSlider() {
   x.min = 0;
   x.max = 2;
   document.body.appendChild(x);
+}
+
+// set the information so the next page can make use of them, and they can be remembered
+function setInformation() {
+  var radius = document.getElementById("distanceRange");
+  sessionStorage.setItem('radius', radius);
+
+  var price = document.getElementById("priceRange");
+  sessionStorage.setItem('price', price);
+}
+
+// fetch the information or set the default inputs
+function getInformation() {
+  var radius = sessionStorage.getItem('radius') || 5000;
+  var price = sessionStorage.getItem('price') || 2;
 }
