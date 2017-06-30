@@ -23,6 +23,13 @@ function initMap() {
       };
       map.setCenter(pos);
 
+      var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+      var marker = new google.maps.Marker({
+        map: map,
+        position: pos,
+        icon: image
+      });
+
       var radiusOptions = {
             strokeColor: '#FF0000',
             strokeOpacity: 0.1,
@@ -79,6 +86,7 @@ function addMarker(place) {
   var marker = new google.maps.Marker({
     map: map,
     position: place.geometry.location,
+    animation: google.maps.Animation.DROP
   });
 }
 
