@@ -1,4 +1,5 @@
 
+\
 // set the information so the next page can make use of them, and they can be remembered
 function setInformation() {
   var radius = document.getElementById("distanceRange").value;
@@ -12,4 +13,7 @@ function setInformation() {
 function getInformation() {
   var radius = sessionStorage.getItem("radius") || 5000;
   var price = sessionStorage.getItem("price") || 2;
+
+  document.getElementById("distanceRange").value = parseInt(radius);
+  document.getElementById("priceRange").value = parseInt(price);
 }
