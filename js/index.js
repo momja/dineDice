@@ -12,7 +12,7 @@ function setInformation() {
 // fetch the information or set the default inputs
 function getInformation() {
   var radius = sessionStorage.getItem("radius") || 5000;
-  var price = sessionStorage.getItem("price") || 2;
+  var price = sessionStorage.getItem("price") || 1;
 
   document.getElementById("distanceRange").value = parseInt(radius);
   document.getElementById("priceRange").value = parseInt(price);
