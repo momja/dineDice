@@ -1,5 +1,5 @@
 
-\
+
 // set the information so the next page can make use of them, and they can be remembered
 function setInformation() {
   var radius = document.getElementById("distanceRange").value;
