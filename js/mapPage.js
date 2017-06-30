@@ -51,8 +51,8 @@ function initMap() {
 }
 
 function getInformation() {
-  searchRadius = sessionStorage.getItem('radius') || 5000;
-  var price = sessionStorage.getItem('price') || 2;
+  searchRadius = parseInt(sessionStorage.getItem("radius") || 5000);
+  var price = sessionStorage.getItem("price") || 2;
 }
 
 function performSearch(pos) {
