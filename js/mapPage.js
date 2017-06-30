@@ -23,8 +23,6 @@ function initMap() {
       };
       map.setCenter(pos);
 
-      searchRadius = 2000;
-
       var radiusOptions = {
             strokeColor: '#FF0000',
             strokeOpacity: 0.1,
