@@ -105,7 +105,7 @@ function findPlace() {
     rating.innerHTML = "rating: " + place.rating;
 
     var photo = document.getElementById("placePhoto");
-    photo.src = place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100});
+    photo.src = place.photos[0].getUrl({'maxWidth': 300, 'maxHeight': 250});
   }
 
   else {
