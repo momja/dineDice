@@ -2,6 +2,7 @@
 var map;
 var service;
 var searchRadius;
+var price;
 
 var nearbyPlaces = [];
 
@@ -59,7 +60,7 @@ function initMap() {
 
 function getInformation() {
   searchRadius = parseInt(sessionStorage.getItem("radius") || 5000);
-  var price = sessionStorage.getItem("price") || 2;
+  price = sessionStorage.getItem("price") || 2;
 }
 
 function performSearch(pos) {
@@ -95,20 +96,17 @@ function addMarker(place) {
 function findPlace() {
   var randomChoice = Math.floor(Math.random() * nearbyPlaces.length);
   place = nearbyPlaces[randomChoice];
+  console.log("place found:" + result.name);
+  if (result.rating >= 3.0 && (result.name != "SUBWAY®Restaurants" && result.name != "McDonald's")) {
+    var reccommendation = document.getElementById("option");
+    reccommendation.innerHTML = result.name;
 
-  service.getDetails(place, function(result, status) {
-    console.log("place found:" + result.name);
-    if (result.rating >= 3.0 && (result.name != "SUBWAY®Restaurants" && result.name != "McDonald's")) {
-      var reccommendation = document.getElementById("option");
-      reccommendation.innerHTML = result.name;
+    var rating = document.getElementById("rating")
+    rating.innerHTML = "rating: " + result.rating;
+  }
 
-      var rating = document.getElementById("rating")
-      rating.innerHTML = "rating: " + result.rating;
-    }
+  else {
+    findPlace();
+  }
 
-    else {
-      findPlace();
-    }
-
-  });
 }
