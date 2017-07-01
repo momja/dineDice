@@ -103,6 +103,9 @@ function findPlace() {
 
     var rating = document.getElementById("rating")
     rating.innerHTML = "rating: " + place.rating;
+
+    var photo = document.getElementById("placePhoto");
+    photo.href = place.photos[0];
   }
 
   else {
