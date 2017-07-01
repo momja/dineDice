@@ -24,7 +24,7 @@ function initMap() {
       };
       map.setCenter(pos);
 
-      var image = '/images/Blue-Marker.png';
+      var image = 'images/Blue-Marker.png';
       var marker = new google.maps.Marker({
         map: map,
         position: pos,
