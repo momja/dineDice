@@ -66,9 +66,11 @@ function performSearch(pos) {
   var request = {
     location: pos,
     radius: searchRadius,
-    type: 'restaurant'
+    type: 'restaurant',
+    minPriceLevel: price,
+    maxPriceLevel: price
   };
-  service.radarSearch(request, callback);
+  service.nearbySearch(request, callback);
 }
 
 function callback(results, status) {
