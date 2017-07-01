@@ -96,13 +96,13 @@ function addMarker(place) {
 function findPlace() {
   var randomChoice = Math.floor(Math.random() * nearbyPlaces.length);
   place = nearbyPlaces[randomChoice];
-  console.log("place found:" + result.name);
-  if (result.rating >= 3.0 && (result.name != "SUBWAY®Restaurants" && result.name != "McDonald's")) {
+  console.log("place found:" + place.name);
+  if (place.rating >= 3.0 && (place.name != "SUBWAY®Restaurants" && place.name != "McDonald's")) {
     var reccommendation = document.getElementById("option");
-    reccommendation.innerHTML = result.name;
+    reccommendation.innerHTML = place.name;
 
     var rating = document.getElementById("rating")
-    rating.innerHTML = "rating: " + result.rating;
+    rating.innerHTML = "rating: " + place.rating;
   }
 
   else {
