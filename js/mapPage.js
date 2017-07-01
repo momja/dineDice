@@ -24,7 +24,7 @@ function initMap() {
       };
       map.setCenter(pos);
 
-      var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+      var image = '/images/Blue-Marker.png';
       var marker = new google.maps.Marker({
         map: map,
         position: pos,
@@ -102,7 +102,7 @@ function findPlace() {
     reccommendation.innerHTML = place.name;
 
     var rating = document.getElementById("rating")
-    rating.innerHTML = "rating: " + place.rating;
+    rating.innerHTML = "Rating: " + place.rating;
 
     var photo = document.getElementById("placePhoto");
     photo.src = place.photos[0].getUrl({'maxWidth': 300, 'maxHeight': 250});
