@@ -24,7 +24,7 @@ function initMap() {
       };
       map.setCenter(pos);
 
-      var image = 'https://momja.github.io/dineDice/images/Blue-Marker.png';
+      var image = 'https://momja.github.io/dineDice/images/blue-marker.png';
       var marker = new google.maps.Marker({
         map: map,
         position: pos,
@@ -86,10 +86,12 @@ function callback(results, status) {
 
 function addMarker(place) {
   nearbyPlaces.push(place);
+  var image = 'https://momja.github.io/dineDice/images/red-marker.png';
   var marker = new google.maps.Marker({
     map: map,
     position: place.geometry.location,
-    animation: google.maps.Animation.DROP
+    animation: google.maps.Animation.DROP,
+    icon: image
   });
 }
 
