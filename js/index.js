@@ -18,7 +18,6 @@ function getInformation() {
   document.getElementById("priceRange").value = parseInt(price);
 }
 
-document.getElementById("distance").innerHTML = range.value;
 
 var range = document.getElementById("distanceRange")
 range.addEventListener("input", function() {
