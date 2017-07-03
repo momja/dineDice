@@ -17,3 +17,9 @@ function getInformation() {
   document.getElementById("distanceRange").value = parseInt(radius);
   document.getElementById("priceRange").value = parseInt(price);
 }
+
+
+var range = document.getElementById("distanceRange")
+range.addEventListener("keydown", function() {
+  document.getElementById("distance").innerHTML = range.value;
+})
