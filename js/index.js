@@ -31,6 +31,6 @@ function getInformation() {
 
 
 
-function update(var itemToBeUpdated, value) {
+function update(itemToBeUpdated, value) {
   document.getElementById(itemToBeUpdated).innerHTML = value;
 }
