@@ -1,11 +1,4 @@
 
-
-var distanceRange = document.getElementById("distanceRange");
-distanceRange.addEventListener("input", update("distance", distanceRange.value));
-
-var priceRange = document.getElementById("priceRange");
-priceRange.addEventListener("input", update("price", priceRange.value));
-
 // set the information so the next page can make use of them, and they can be remembered
 function setInformation() {
   var radius = document.getElementById("distanceRange").value;
@@ -14,8 +7,6 @@ function setInformation() {
   var price = document.getElementById("priceRange").value;
   sessionStorage.setItem("price", price);
 
-  update("distance", radius);
-  update("price", price);
 }
 
 // fetch the information or set the default inputs
@@ -25,12 +16,4 @@ function getInformation() {
 
   document.getElementById("distanceRange").value = parseInt(radius);
   document.getElementById("priceRange").value = parseInt(price);
-}
-
-
-
-
-
-function update(itemToBeUpdated, value) {
-  document.getElementById(itemToBeUpdated).innerHTML = value;
 }
