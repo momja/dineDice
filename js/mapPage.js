@@ -270,7 +270,11 @@ function initMap() {
         ]
     }
 ],
-    disableDefaultUI: true
+    disableDefaultUI: true,
+    backgroundColor: "#ffd600",
+    draggable: false,
+    disableDoubleClickZoom: true,
+    gestureHandling: "none"
   });
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {

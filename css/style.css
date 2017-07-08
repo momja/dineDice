@@ -5,6 +5,18 @@ body {
     font-family: 'Pacifico', Arial, sans-serif;
 }
 
+.mapholder {
+  position:relative;
+}
+
+.response {
+  position:absolute;
+  left: 0;
+  top: 0;
+  padding: 10px;
+  margin: 5px;
+}
+
 .button {
     display: inline-block;
     margin: 10px;
