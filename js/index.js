@@ -1,8 +1,9 @@
 
 // set the information so the next page can make use of them, and they can be remembered
 function setInformation() {
-  var radius = document.getElementById("distanceRange").value;
-  sessionStorage.setItem("radius", radius);
+  var radiusinMiles = document.getElementById("distanceRange").value;
+  var radiusinMeters = convertMilesToMeters(radiusinMiles);
+  sessionStorage.setItem("radius", radiusinMeters);
 
   var price = document.getElementById("priceRange").value;
   sessionStorage.setItem("price", price);
@@ -11,9 +12,13 @@ function setInformation() {
 
 // fetch the information or set the default inputs
 function getInformation() {
-  var radius = sessionStorage.getItem("radius") || 5000;
+  var radius = sessionStorage.getItem("radius") || 3;
   var price = sessionStorage.getItem("price") || 1;
 
   document.getElementById("distanceRange").value = parseInt(radius);
   document.getElementById("priceRange").value = parseInt(price);
+}
+
+function convertMilesToMeters(miles) {
+  return miles/0.000621371;
 }
