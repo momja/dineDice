@@ -11,7 +11,7 @@ function initMap() {
 
   getInformation();
 
-  map = new google.maps.Map(document.getElementById('mapholder').getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     zoom: getZoom(),
     styles: [
     {
