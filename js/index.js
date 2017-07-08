@@ -15,7 +15,7 @@ function getInformation() {
   var radius = sessionStorage.getItem("radius") || 3;
   var price = sessionStorage.getItem("price") || 1;
 
-  document.getElementById("distanceRange").value = parseInt(radius);
+  document.getElementById("distanceRange").value = parseInt(radius) + " miles";
   document.getElementById("priceRange").value = parseInt(price);
 }
 

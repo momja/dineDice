@@ -319,7 +319,7 @@ function initMap() {
 }
 
 function getInformation() {
-  searchRadius = parseInt(sessionStorage.getItem("radius") || 5000);
+  searchRadius = parseInt(sessionStorage.getItem("radius") || 3);
   price = sessionStorage.getItem("price") || 2;
 }
 
