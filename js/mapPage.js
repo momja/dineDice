@@ -284,7 +284,7 @@ function initMap() {
       };
       map.setCenter(pos);
 
-      var image = 'https://momja.github.io/dineDice/images/white-marker.png';
+      var image = 'https://momja.github.io/dineDice/images/white-marker-shadow.png';
       var marker = new google.maps.Marker({
         map: map,
         position: pos,
@@ -358,7 +358,7 @@ function callback(results, status) {
 
 function addMarker(place) {
   nearbyPlaces.push(place);
-  var image = 'https://momja.github.io/dineDice/images/pink-marker.png';
+  var image = 'https://momja.github.io/dineDice/images/pink-marker-shadow.png';
   var marker = new google.maps.Marker({
     map: map,
     position: place.geometry.location,
