@@ -383,7 +383,7 @@ function findPlace() {
     var photo = document.getElementById("placePhoto");
     photo.src = place.photos[0].getUrl({'maxWidth': 300, 'maxHeight': 250});
 
-    geocodeLatLng(geocoder, map, infowindow);
+    geocodeLatLng(geocoder, map, place);
   }
 
   else {
