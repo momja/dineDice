@@ -3,10 +3,10 @@ var map;
 var service;
 var searchRadius;
 var price;
+var geocoder;
 
 var nearbyPlaces = [];
 
-var geocoder = new google.maps.Geocoder;
 
 // code starts here. begins by making map, finding your current location, and starts the search
 function initMap() {
@@ -318,6 +318,7 @@ function initMap() {
   }
   infoWindow = new google.maps.InfoWindow();
   service = new google.maps.places.PlacesService(map);
+  geocoder = new google.maps.Geocoder;
 }
 
 function getInformation() {
@@ -389,13 +390,13 @@ function findPlace() {
     findPlace();
   }
 
-function geocodeLatLng(geocoder, map, infowindow, place) {
+function geocodeLatLng(geocoder, map, place) {
   var latlngStr = place.geometry.location.split(',', 2);
   var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
   geocoder.geocode({'location': latlng}, function(results, status) {
     if (status === 'OK') {
       if (results[1]) {
-        createLink(results[1].formatted_address);
+        document.getElementById("directionsLink").href = createLink(results[1].formatted_address);
       }
       else {
         alert("error finding location of result");
