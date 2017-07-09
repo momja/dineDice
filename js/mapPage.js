@@ -6,6 +6,8 @@ var price;
 
 var nearbyPlaces = [];
 
+var geocoder = new google.maps.Geocoder;
+
 // code starts here. begins by making map, finding your current location, and starts the search
 function initMap() {
 
@@ -362,7 +364,6 @@ function addMarker(place) {
   var marker = new google.maps.Marker({
     map: map,
     position: place.geometry.location,
-    animation: google.maps.Animation.DROP,
     icon: image
   });
 }
@@ -380,10 +381,31 @@ function findPlace() {
 
     var photo = document.getElementById("placePhoto");
     photo.src = place.photos[0].getUrl({'maxWidth': 300, 'maxHeight': 250});
+
+    geocodeLatLng(geocoder, map, infowindow);
   }
 
   else {
     findPlace();
   }
 
+function geocodeLatLng(geocoder, map, infowindow, place) {
+  var latlngStr = place.geometry.location.split(',', 2);
+  var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+  geocoder.geocode({'location': latlng}, function(results, status) {
+    if (status === 'OK') {
+      if (results[1]) {
+        createLink(results[1].formatted_address);
+      }
+      else {
+        alert("error finding location of result");
+      }
+    }
+  }
+
+  function createLink(address) {
+    parsedAddress = address.replace(" ", "+")
+    return "http://maps.apple.com/?" + "daddr=" + address
+  }
+}
 }
