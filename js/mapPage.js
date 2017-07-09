@@ -383,7 +383,7 @@ function findPlace() {
     var photo = document.getElementById("placePhoto");
     photo.src = place.photos[0].getUrl({'maxWidth': 300, 'maxHeight': 250});
 
-    var link = "http://maps.apple.com/?" + "sll=" + place.geometry.location.lat()+","+place.geometry.location.lng();
+    var link = "http://maps.apple.com/?" + "q=" + place.name + "sll=" + place.geometry.location.lat()+","+place.geometry.location.lng();
     document.getElementById("directionsLink").href = link;
   }
 
