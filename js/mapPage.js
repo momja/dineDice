@@ -391,8 +391,7 @@ function findPlace() {
   }
 
 function geocodeLatLng(geocoder, map, place) {
-  var latlngStr = place.geometry.location.split(',', 2);
-  var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+  var latlng = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
   geocoder.geocode({'location': latlng}, function(results, status) {
     if (status === 'OK') {
       if (results[1]) {
