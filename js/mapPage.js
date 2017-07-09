@@ -401,7 +401,7 @@ function geocodeLatLng(geocoder, map, infowindow, place) {
         alert("error finding location of result");
       }
     }
-  }
+  });
 
   function createLink(address) {
     parsedAddress = address.replace(" ", "+")
