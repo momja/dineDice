@@ -383,30 +383,12 @@ function findPlace() {
     var photo = document.getElementById("placePhoto");
     photo.src = place.photos[0].getUrl({'maxWidth': 300, 'maxHeight': 250});
 
-    geocodeLatLng(geocoder, map, place);
+    var link = "http://maps.apple.com/?" + "ssl=" + place.geometry.location.lat()+","+place.geometry.location.lng();
+    document.getElementById("directionsLink").href = link;
   }
 
   else {
     findPlace();
   }
 
-function geocodeLatLng(geocoder, map, place) {
-  var latlng = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
-  geocoder.geocode({'location': latlng}, function(results, status) {
-    if (status === 'OK') {
-      if (results[1]) {
-        document.getElementById("directionsLink").href = createLink(results[1].formatted_address);
-      }
-      else {
-        alert("error finding location of result");
-      }
-    }
-  });
-
-  function createLink(address) {
-    parsedAddress = address.replace(" ", "+");
-    console.log(parsedAddress);
-    return "http://maps.apple.com/?" + "daddr=" + address;
-  }
-}
 }
