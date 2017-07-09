@@ -404,8 +404,9 @@ function geocodeLatLng(geocoder, map, place) {
   });
 
   function createLink(address) {
-    parsedAddress = address.replace(" ", "+")
-    return "http://maps.apple.com/?" + "daddr=" + address
+    parsedAddress = address.replace(" ", "+");
+    console.log(parsedAddress);
+    return "http://maps.apple.com/?" + "daddr=" + address;
   }
 }
 }
