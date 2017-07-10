@@ -378,6 +378,7 @@ function addInfoWindow(marker, option, rating, foodImage) {
 
   infoWindow.setContent(contentString);
   infoWindow.open(map, marker)
+  map.panTo(marker.getPosition());
 }
 
 function findPlace() {
