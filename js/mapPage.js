@@ -4,6 +4,7 @@ var service;
 var searchRadius;
 var price;
 var geocoder;
+var markers = [];
 
 var nearbyPlaces = [];
 
@@ -367,6 +368,16 @@ function addMarker(place) {
     position: place.geometry.location,
     icon: image
   });
+  markers.push(marker);
+}
+
+function addInfoWindow(marker, option, rating, foodImage) {
+  var contentString = `<h1>${option}</h1>` +
+    `<p>rating: ${rating}</p>` +
+    `<img src=${foodImage}>`;
+
+  infoWindow.setContent(contentString);
+  infoWindow.open(map, marker)
 }
 
 function findPlace() {
@@ -374,17 +385,10 @@ function findPlace() {
   place = nearbyPlaces[randomChoice];
   console.log("place found:" + place.name);
   if (place.rating >= 3.0 && (place.name != "SUBWAY®Restaurants" && place.name != "McDonald's")) {
-    var reccommendation = document.getElementById("option");
-    reccommendation.innerHTML = place.name;
-
-    var rating = document.getElementById("rating")
-    rating.innerHTML = "Rating: " + place.rating;
-
-    var photo = document.getElementById("placePhoto");
-    photo.src = place.photos[0].getUrl({'maxWidth': 300, 'maxHeight': 250});
-
     var link = "http://maps.apple.com/?" + "q=" + place.name + "sll=" + place.geometry.location.lat()+","+place.geometry.location.lng();
     document.getElementById("directionsLink").href = link;
+    addInfoWindow(markers[randomChoice], place.name, place.rating, place.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150}));
+
   }
 
   else {
