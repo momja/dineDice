@@ -306,9 +306,7 @@ function initMap() {
         };
         // Add the circle for this city to the map.
         cityCircle = new google.maps.Circle(radiusOptions);
-
         performSearch(pos);
-
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
     });
@@ -358,6 +356,7 @@ function callback(results, status) {
         for (var i = 0, result; result = results[i]; i++) {
           addMarker(result);
         }
+        findPlace();
 }
 
 function addMarker(place) {
