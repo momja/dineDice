@@ -1,26 +1,12 @@
-<!DOCTYPE html>
-<html onload="getInformation">
-<meta charset="UTF-8">
-<title>Input Page</title>
-<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-</head>
-
-<p>
-  distance:
-  <output id="distance"></output>
-</p>
-<input type="range" min="0" max="6" id="distanceRange" oninput="distance.value=value">
-<p>
-  price:
-  <output id="price"></output>
-</p>
-<input type="range" min="1" max="3" id="priceRange" oninput="price.value=value">
-<br />
-<a onclick="setInformation()" class="button" href="mapPage.html"><span>Let's Roll</span></a>
-
-
+<h1>Dine Dice</h1>
+<h2>The restaurant finder for the indecisive human being</h2>
+<p>distance: <output id="distance"></output></p>
+<form><input type="range" min="0" max="6" id="distanceRange"
+oninput="distance.value=value"></form>
+<p>price: <output id="price"></output></p>
+<form><input type="range" min="1" max="3" id="priceRange" oninput=
+"price.value=value"><br>
+<a onclick="setInformation()" class="button" href=
+"mapPage.html"><span>Let's Roll</span></a> 
 <script src="js/index.js">
-</script>
-
-</html>
+</script></form>
