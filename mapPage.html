@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Google Places Finder</title>
-  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-    <meta name="viewport" content=
-    "initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <style>
+<meta charset="UTF-8">
+<title>Dine Dice Search</title>
+<link href="https://fonts.googleapis.com/css?family=Pacifico" rel=
+"stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<meta name="viewport" content=
+"initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<style>
       html,
       body {
         height: 100%;
@@ -30,27 +31,23 @@
       .response {
         z-index: 1;
         position: relative;
-        padding-top:90%;
+        padding-top:60%;
       }
-      </style>
-        <div id="map"></div>
-        <div class="response">
-          <a onclick="findPlace()" class="button"><span>Roll
-          For Restaurant</span></a>
-          <div id='div1'>
-            <p id="option"></p>
-            <p id="rating"></p>
-            <a id="directionsLink">DIRECTIONS LINK</a>
-          </p>
-          </div>
-        </div>
-        <img id="placePhoto" />
-
-      <script src=
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyDJTJhUbNekFRGG147xonaJj0AwMDLBFQI&amp;libraries=places&amp;callback=initMap"
-      async defer>
-      </script>
-          <script>
+</style>
+<div id="map"></div>
+<div class="response"><a onclick="findPlace()" class=
+"button"><span>Roll For Restaurant</span></a>
+<div id='div1'>
+<p id="option"></p>
+<p id="rating"></p>
+<a id="directionsLink">DIRECTIONS LINK</a></div>
+</div>
+<img id="placePhoto">
+<script src=
+"https://maps.googleapis.com/maps/api/js?key=AIzaSyDJTJhUbNekFRGG147xonaJj0AwMDLBFQI&amp;libraries=places&amp;callback=initMap"
+async defer>
+</script>
+<script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -59,8 +56,8 @@
       ga('create', 'UA-85764709-2', 'auto');
       ga('send', 'pageview');
 
-    </script>
-      <script src="js/mapPage.js">
-      </script>
-    </body>
+</script>
+<script src="js/mapPage.js">
+</script>
+</body>
 </html>
