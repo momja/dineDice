@@ -370,10 +370,11 @@ function addMarker(place) {
   markers.push(marker);
 }
 
-function addInfoWindow(marker, option, rating, foodImage) {
+function addInfoWindow(marker, option, rating, foodImage, link) {
   var contentString = `<h1>${option}</h1>` +
-    `<p>rating: ${rating}</p>` +
-    `<img src=${foodImage}>`;
+    `<div><div style='float:right;'><img src=${foodImage}></div><p>rating: ${rating} <br> distance: xxx` +
+    `</p></div>` +
+    `<p><a href=${link}>Directions</a></p>`;
 
   infoWindow.setContent(contentString);
   infoWindow.open(map, marker)
@@ -386,8 +387,7 @@ function findPlace() {
   console.log("place found:" + place.name);
   if (place.rating >= 3.0 && (place.name != "SUBWAY®Restaurants" && place.name != "McDonald's")) {
     var link = "http://maps.apple.com/?" + "q=" + place.name + "sll=" + place.geometry.location.lat()+","+place.geometry.location.lng();
-    document.getElementById("directionsLink").href = link;
-    addInfoWindow(markers[randomChoice], place.name, place.rating, place.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150}));
+    addInfoWindow(markers[randomChoice], place.name, place.rating, place.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150}), link);
 
   }
 
@@ -396,3 +396,13 @@ function findPlace() {
   }
 
 }
+
+//Google Analytics
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-85764709-2', 'auto');
+ga('send', 'pageview');
+//End Google Analytics
