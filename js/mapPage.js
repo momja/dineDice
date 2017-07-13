@@ -387,15 +387,16 @@ function findPlace() {
   console.log("place found:" + place.name);
   if (place.rating >= 3.0 && (place.name != "SUBWAY®Restaurants" && place.name != "McDonald's")) {
     var link = "http://maps.apple.com/?" + "q=" + place.name + "sll=" + place.geometry.location.lat()+","+place.geometry.location.lng();
-    var photo = function() {
+    function photo() {
       if (place.photos[0]) {
+        return "https://momja.github.io/dineDice/images/No_Pictures.png"
+
         return place.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150})
       }
       else {
-        return "https://momja.github.io/dineDice/images/No_Pictures.png"
       }
-    }
-    addInfoWindow(markers[randomChoice], place.name, place.rating, photo, link);
+    };
+    addInfoWindow(markers[randomChoice], place.name, place.rating, photo(), link);
 
   }
 
