@@ -15,9 +15,9 @@
 <form><input type="range" min="1" max="60" id="distanceRange"
 oninput="distance.value=(value/10)"></form>
 <p>price: <output id="price"></output></p>
-<input type="checkbox" name="price_level_1" value="$" /> $<br />
-<input type="checkbox" name="price_level_2" value="$$" checked/> $$<br />
-<input type="checkbox" name="price_level_3" value="$$$" /> $$$<br />
+  <input type="checkbox" id="price_level_1" value="$" /> $<br />
+  <input type="checkbox" id="price_level_2" value="$$" checked/> $$<br />
+  <input type="checkbox" id="price_level_3" value="$$$" /> $$$<br />
 <a onclick="setInformation()" class="button" href=
 "mapPage.html"><span>Let's Roll</span></a>
 <script src="js/index.js">

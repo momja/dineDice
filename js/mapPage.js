@@ -322,18 +322,18 @@ function initMap() {
 
 function getInformation() {
   searchRadius = parseInt(sessionStorage.getItem("radius") || 3);
-  price = sessionStorage.getItem("price") || 2;
+  price = sessionStorage.getItem("pricecombo") || [1,3];
 }
 
 function getZoom() {
   if (searchRadius < 1000) {
-    return 14;
+    return 13;
   }
   else if (searchRadius < 5000) {
     return 12;
   }
   else if (searchRadius < 10000) {
-    return 10;
+    return 11;
   }
 }
 
@@ -342,8 +342,8 @@ function performSearch(pos) {
     location: pos,
     radius: searchRadius,
     type: 'restaurant',
-    minPriceLevel: price,
-    maxPriceLevel: price
+    minPriceLevel: 1,
+    maxPriceLevel: 1
   };
   service.nearbySearch(request, callback);
 }
@@ -389,11 +389,10 @@ function findPlace() {
     var link = "http://maps.apple.com/?" + "q=" + place.name + "sll=" + place.geometry.location.lat()+","+place.geometry.location.lng();
     function photo() {
       if (place.photos[0]) {
-        return "https://momja.github.io/dineDice/images/No_Pictures.png"
-
         return place.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150})
       }
       else {
+        return "https://momja.github.io/dineDice/images/No_Pictures.png"
       }
     };
     addInfoWindow(markers[randomChoice], place.name, place.rating, photo(), link);

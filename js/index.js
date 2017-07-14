@@ -5,18 +5,41 @@ function setInformation() {
   var radiusinMeters = convertMilesToMeters(radiusinMiles);
   sessionStorage.setItem("radius", radiusinMeters);
 
-  var price = document.getElementById("priceRange").value;
-  sessionStorage.setItem("price", price);
+  if (var price = document.getElementById("price_level_1").value) {
+    // price 1 and 2 are checked
+    if (var secondary_price = document.getElementById("price_level_2").value) {
+      sessionStorage.setItem("priceCombo", [1,2]);
+    }
+    // price 1 and 3 are checked
+    else if (var secondary_price = document.getElementById("price_level_3").value) {
+      sessionStorage.setItem("priceCombo", [1,3]);
+    }
+    // only price 1 is checked
+    else {
+      sessionStorage.setItem("priceCombo", [1,1]);
+    }
+  }
+  else if (var price = document.getElementById("price_level_2").value) {
+    // price 2 and 3 are checked
+    if (var secondary_price = document.getElementById("price_level_3").value) {
+      sessionStorage.setItem("priceCombo", [2,3]);
+    }
+    // only price 2 is checked
+    else {
+      sessionStorage.setItem("priceCombo", [2,2]);
+    }
+  }
+  // only price 3 is checked
+  else {
+    sessionStorage.setItem("priceCombo", [3,3]);
+  }
 
 }
 
 // fetch the information or set the default inputs
 function getInformation() {
   var radius = sessionStorage.getItem("radius") || 3;
-  var price = sessionStorage.getItem("price") || 1;
-
   document.getElementById("distanceRange").value = parseInt(radius) + " miles";
-  document.getElementById("priceRange").value = parseInt(price);
 }
 
 function convertMilesToMeters(miles) {
