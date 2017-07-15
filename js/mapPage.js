@@ -342,8 +342,8 @@ function performSearch(pos) {
     location: pos,
     radius: searchRadius,
     type: 'restaurant',
-    minPriceLevel: 1,
-    maxPriceLevel: 1
+    minPriceLevel: price[0],
+    maxPriceLevel: price[1]
   };
   service.nearbySearch(request, callback);
 }
