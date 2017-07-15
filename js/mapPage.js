@@ -321,8 +321,8 @@ function initMap() {
 }
 
 function getInformation() {
-  searchRadius = parseInt(sessionStorage.getItem("radius"));
-  price = sessionStorage.getItem("pricecombo");
+  searchRadius = parseInt(sessionStorage.getItem("radius")) || 3;
+  price = sessionStorage.getItem("pricecombo") || [1,3];
 }
 
 function getZoom() {

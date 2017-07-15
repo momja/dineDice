@@ -11,30 +11,30 @@ function setInformation() {
   if (price = document.getElementById("price_level_1").value) {
     // price 1 and 2 are checked
     if (secondary_price = document.getElementById("price_level_2").value) {
-      sessionStorage.setItem("priceCombo", [1,2]);
+      sessionStorage.setItem("priceCombo", "12");
     }
     // price 1 and 3 are checked
     else if (secondary_price = document.getElementById("price_level_3").value) {
-      sessionStorage.setItem("priceCombo", [1,3]);
+      sessionStorage.setItem("priceCombo", "13");
     }
     // only price 1 is checked
     else {
-      sessionStorage.setItem("priceCombo", [1,1]);
+      sessionStorage.setItem("priceCombo", "1,1");
     }
   }
   else if (price = document.getElementById("price_level_2").value) {
     // price 2 and 3 are checked
     if (secondary_price = document.getElementById("price_level_3").value) {
-      sessionStorage.setItem("priceCombo", [2,3]);
+      sessionStorage.setItem("priceCombo", "2,3");
     }
     // only price 2 is checked
     else {
-      sessionStorage.setItem("priceCombo", [2,2]);
+      sessionStorage.setItem("priceCombo", "2,2");
     }
   }
   // only price 3 is checked
   else {
-    sessionStorage.setItem("priceCombo", [3,3]);
+    sessionStorage.setItem("priceCombo", "3,3");
   }
 
 }
