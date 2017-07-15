@@ -370,10 +370,10 @@ function addMarker(place) {
   markers.push(marker);
 }
 
-function addInfoWindow(marker, option, rating, foodImage, link) {
+function addInfoWindow(marker, option, rating, foodImage, link, price) {
   var contentString = `<h1>${option}</h1>` +
     `<div><div style='float:right;'><img src=${foodImage}></div><p>rating: ${rating} <br> distance: xxx` +
-    `</p></div>` +
+    `</p> <p>price: ${price}</div>` +
     `<p><a href=${link}>Directions</a></p>`;
 
   infoWindow.setContent(contentString);
@@ -395,7 +395,8 @@ function findPlace() {
         return "https://momja.github.io/dineDice/images/No_Pictures.png"
       }
     };
-    addInfoWindow(markers[randomChoice], place.name, place.rating, photo(), link);
+    var price = place.price_level
+    addInfoWindow(markers[randomChoice], place.name, place.rating, photo(), link, price);
 
   }
 
