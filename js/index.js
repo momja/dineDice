@@ -5,16 +5,13 @@ function setInformation() {
   var radiusinMeters = convertMilesToMeters(radiusinMiles);
   sessionStorage.setItem("radius", radiusinMeters);
 
-  var price;
-  var secondary_price;
-
-  if (price = document.getElementById("price_level_1").value) {
+  if (document.getElementById("price_level_1").checked) {
     // price 1 and 2 are checked
-    if (secondary_price = document.getElementById("price_level_2").value) {
+    if (document.getElementById("price_level_2").checked) {
       sessionStorage.setItem("priceCombo", "12");
     }
     // price 1 and 3 are checked
-    else if (secondary_price = document.getElementById("price_level_3").value) {
+    else if (document.getElementById("price_level_3").checked) {
       sessionStorage.setItem("priceCombo", "13");
     }
     // only price 1 is checked
@@ -22,9 +19,9 @@ function setInformation() {
       sessionStorage.setItem("priceCombo", "1,1");
     }
   }
-  else if (price = document.getElementById("price_level_2").value) {
+  else if (document.getElementById("price_level_2").checked) {
     // price 2 and 3 are checked
-    if (secondary_price = document.getElementById("price_level_3").value) {
+    if (document.getElementById("price_level_3").checked) {
       sessionStorage.setItem("priceCombo", "2,3");
     }
     // only price 2 is checked
