@@ -1,13 +1,12 @@
-
 var map;
 var service;
 var searchRadius;
-var price;
 var geocoder;
 var markers = [];
+var distance;
+var currentLocation = {};
 
 var nearbyPlaces = [];
-
 
 // code starts here. begins by making map, finding your current location, and starts the search
 function initMap() {
@@ -16,263 +15,6 @@ function initMap() {
 
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: getZoom(),
-    styles: [
-    {
-        "featureType": "all",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            },
-            {
-                "color": "#232324"
-            },
-            {
-                "lightness": "35"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.province",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.locality",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.neighborhood",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "color": "#ffd600"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "hue": "#ffd600"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape.man_made",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "weight": 0.9
-            },
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape.man_made",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "hue": "#ffd600"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape.natural",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "hue": "#ffd600"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape.natural.landcover",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "hue": "#ffd600"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape.natural.terrain",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            },
-            {
-                "hue": "#ffd600"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "color": "#83cead"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "color": "#ffffff"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "color": "#fee379"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway.controlled_access",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            },
-            {
-                "color": "#ffffff"
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "color": "#7fc8ed"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "hue": "#00baff"
-            }
-        ]
-    }
-],
     disableDefaultUI: true,
     backgroundColor: "#ffd600",
     draggable: false,
@@ -281,16 +23,15 @@ function initMap() {
   });
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
+      currentLocation = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      map.setCenter(pos);
-
+      map.setCenter(currentLocation);
       var image = 'https://momja.github.io/dineDice/images/white-marker-shadow.png';
       var marker = new google.maps.Marker({
         map: map,
-        position: pos,
+        position: currentLocation,
         icon: image
       });
 
@@ -301,12 +42,12 @@ function initMap() {
             fillColor: '#FF0000',
             fillOpacity: 0.075,
             map: map,
-            center: pos,
+            center: currentLocation,
             radius: searchRadius
         };
         // Add the circle for this city to the map.
         cityCircle = new google.maps.Circle(radiusOptions);
-        performSearch(pos);
+        performSearch();
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
     });
@@ -322,7 +63,6 @@ function initMap() {
 
 function getInformation() {
   searchRadius = parseInt(sessionStorage.getItem("radius")) || 3;
-  price = sessionStorage.getItem("pricecombo") || [1,3];
 }
 
 function getZoom() {
@@ -337,13 +77,15 @@ function getZoom() {
   }
 }
 
-function performSearch(pos) {
+function performSearch() {
+  var min_price = sessionStorage.getItem("minprice");
+  var max_price = sessionStorage.getItem("maxprice");
   var request = {
-    location: pos,
+    location: map.getCenter(),
     radius: searchRadius,
     type: 'restaurant',
-    minPriceLevel: price[0],
-    maxPriceLevel: price[1]
+    minPriceLevel: min_price,
+    maxPriceLevel: max_price
   };
   service.nearbySearch(request, callback);
 }
@@ -370,9 +112,9 @@ function addMarker(place) {
   markers.push(marker);
 }
 
-function addInfoWindow(marker, option, rating, foodImage, link, price) {
+function addInfoWindow(marker, option, rating, distance, foodImage, link, price) {
   var contentString = `<h1>${option}</h1>` +
-    `<div><div style='float:right;'><img src=${foodImage}></div><p>rating: ${rating} <br> distance: xxx` +
+    `<div><div style='float:right;'><img src=${foodImage}></div><p>rating: ${rating} <br> distance: ${distance}` +
     `</p> <p>price: ${price}</div>` +
     `<p><a href=${link}>Directions</a></p>`;
 
@@ -385,25 +127,67 @@ function findPlace() {
   var randomChoice = Math.floor(Math.random() * nearbyPlaces.length);
   place = nearbyPlaces[randomChoice];
   console.log("place found:" + place.name);
-  if (place.rating >= 3.0 && (place.name != "SUBWAY®Restaurants" && place.name != "McDonald's")) {
-    var link = "http://maps.apple.com/?" + "q=" + place.name + "sll=" + place.geometry.location.lat()+","+place.geometry.location.lng();
-    function photo() {
-      if (place.photos[0]) {
-        return place.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150})
-      }
-      else {
-        return "https://momja.github.io/dineDice/images/No_Pictures.png"
-      }
-    };
-    var price = place.price_level
-    addInfoWindow(markers[randomChoice], place.name, place.rating, photo(), link, price);
-
+  if (place.rating >= 3.0) {
+    getDistance(place, markers[randomChoice]);
   }
 
   else {
     findPlace();
   }
 
+}
+
+function getDistance(place, marker) {
+  var matrixService = new google.maps.DistanceMatrixService;
+  matrixService.getDistanceMatrix(
+    {
+      origins: [currentLocation],
+      destinations: [place.geometry.location],
+      travelMode: 'DRIVING',
+      unitSystem: google.maps.UnitSystem.IMPERIAL
+    }, callback);
+  function photo() {
+    if (typeof place.photos !== 'undefined') {
+      return place.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150})
+    }
+    else {
+      return "https://momja.github.io/dineDice/images/No_Pictures.png"
+    }
+  };
+
+  function price() {
+    if (place.price_level == 1) {
+      return "$";
+    }
+    else if (place.price_level == 2) {
+      return "$$";
+    }
+    else {
+      return "$$$";
+    }
+  }
+
+  function callback(response, status) {
+    if (status == 'OK') {
+      var results = response.rows[0].elements;
+      distance = results[0].distance.text;
+      console.log(distance);
+      var unspacedName;
+      for (var i = 0; i < place.name.length; i++) {
+        if (place.name[i] !== " ") {
+          unspacedName += place.name[i];
+        }
+        else {
+          unspacedName += "+";
+        }
+      }
+      var link = "http://maps.apple.com/?" + "&sll=" + place.geometry.location.lat()+ "," +place.geometry.location.lng();
+      addInfoWindow(marker, place.name, place.rating, distance, photo(), link, price());
+    }
+    else {
+      alert("there has been an error " + status)
+    }
+  }
 }
 
 //Google Analytics

@@ -8,30 +8,36 @@ function setInformation() {
   if (document.getElementById("price_level_1").checked) {
     // price 1 and 2 are checked
     if (document.getElementById("price_level_2").checked) {
-      sessionStorage.setItem("priceCombo", "12");
+      sessionStorage.setItem("minprice", "1");
+      sessionStorage.setItem("maxprice", "2");
     }
     // price 1 and 3 are checked
     else if (document.getElementById("price_level_3").checked) {
-      sessionStorage.setItem("priceCombo", "13");
+      sessionStorage.setItem("minprice", "1");
+      sessionStorage.setItem("maxprice", "3");
     }
     // only price 1 is checked
     else {
-      sessionStorage.setItem("priceCombo", "1,1");
+      sessionStorage.setItem("minprice", "1");
+      sessionStorage.setItem("maxprice", "1");
     }
   }
   else if (document.getElementById("price_level_2").checked) {
     // price 2 and 3 are checked
     if (document.getElementById("price_level_3").checked) {
-      sessionStorage.setItem("priceCombo", "2,3");
+      sessionStorage.setItem("minprice", "2");
+      sessionStorage.setItem("maxprice", "3");
     }
     // only price 2 is checked
     else {
-      sessionStorage.setItem("priceCombo", "2,2");
+      sessionStorage.setItem("minprice", "2");
+      sessionStorage.setItem("maxprice", "2");
     }
   }
   // only price 3 is checked
   else {
-    sessionStorage.setItem("priceCombo", "3,3");
+    sessionStorage.setItem("minprice", "3");
+    sessionStorage.setItem("maxprice", "3");
   }
 
 }
