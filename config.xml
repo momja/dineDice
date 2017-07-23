@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "com.lyceum.dinedice"
+    version     = "1.0.0" >
+
+  <name>Dine Dice</name>
+
+  <description>
+      A helpful tool for finding a place to eat when in indecisive groups
+  </description>
+
+  <author href="https://dinedice.com" email="mjomdal@gmail.com">
+      Max Omdal
+  </author>
+
+</widget>
