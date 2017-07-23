@@ -1,11 +1,13 @@
 var map;
 var searchRadius;
 var geocoder;
+var service;
 var markers = [];
 var distance;
 var currentLocation = {};
 var min_price;
 var max_price;
+var cityCircle;
 
 var nearbyPlaces = [];
 
@@ -14,6 +16,7 @@ function setInformation() {
   var radiusinMiles = document.getElementById("distanceRange").value/10;
   var radiusinMeters = convertMilesToMeters(radiusinMiles);
   //sessionStorage.setItem("radius", radiusinMeters);
+    searchRadius = radiusinMeters;
 
   if (document.getElementById("price_level_1").checked) {
     // price 1 and 2 are checked
@@ -106,18 +109,6 @@ function initMap() {
         icon: image
       });
 
-      var radiusOptions = {
-            strokeColor: '#FF0000',
-            strokeOpacity: 0.1,
-            strokeWeight: 2,
-            fillColor: '#FF0000',
-            fillOpacity: 0.075,
-            map: map,
-            center: currentLocation,
-            radius: searchRadius
-        };
-        // Add the circle for this city to the map.
-        cityCircle = new google.maps.Circle(radiusOptions);
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
     });
@@ -128,6 +119,7 @@ function initMap() {
   }
   infoWindow = new google.maps.InfoWindow();
   geocoder = new google.maps.Geocoder;
+  service = new google.maps.places.PlacesService(map);
 }
 
 function getInformation() {
@@ -153,6 +145,9 @@ function setMapOnAll(map) {
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(map);
   }
+  if (typeof cityCircle != 'undefined') {
+        cityCircle.setMap(map);
+    }
 }
 
 // Removes the markers from the map, but keeps them in the array.
@@ -161,7 +156,7 @@ function clearMarkers() {
 }
 
 function nearbyPlacesNames() {
-  var names = []
+  var names = [];
   for (var i = 0; i < nearbyPlaces.length; i++) {
     names.push(nearbyPlaces[i].name);
   }
@@ -169,9 +164,21 @@ function nearbyPlacesNames() {
 }
 
 function performSearch() {
-  nearbyPlaces = []
-  clearMarkers()
-  markers = []
+  nearbyPlaces = [];
+  clearMarkers();
+  markers = [];
+    var radiusOptions = {
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.1,
+        strokeWeight: 2,
+        fillColor: '#FF0000',
+        fillOpacity: 0.075,
+        map: map,
+        center: currentLocation,
+        radius: searchRadius
+    };
+    // Add the circle for this city to the map.
+    cityCircle = new google.maps.Circle(radiusOptions);
   var request = {
     location: currentLocation,
     radius: searchRadius,
@@ -179,7 +186,6 @@ function performSearch() {
     minPriceLevel: min_price,
     maxPriceLevel: max_price
   };
-  var service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
 }
 
