@@ -8,8 +8,58 @@ var currentLocation = {};
 var min_price;
 var max_price;
 var cityCircle;
+var searchLocation;
+var autocomplete;
 
 var nearbyPlaces = [];
+
+function searchBar() {
+    var defaultBounds = new google.maps.LatLngBounds(currentLocation);
+    var input = document.getElementById('search');
+    var options = {
+        bounds: defaultBounds
+    }
+
+    autocomplete = new google.maps.places.Autocomplete(input, options);
+    autocomplete.addListener('place_changed', onPlaceChanged);
+}
+
+function onPlaceChanged() {
+  console.log("working");
+    var place = autocomplete.getPlace();
+    if (place.geometry) {
+      searchLocation = place.geometry.location;
+      map.setCenter(searchLocation);
+    } else {
+        document.getElementById('autocomplete').placeholder = 'Enter a city';
+        searchLocation = currentLocation;
+    }
+}
+
+function geocodeLatLng(location, callback) {
+    var address = "";
+    geocoder.geocode({'location': location}, function(results, status) {
+        if (status === 'OK') {
+            if (results[1]) {
+              address = results[0].formatted_address;
+              callback(address);
+            }
+            else {
+              console.error("no results found");
+            }
+        }
+        else {
+            console.error('Geocoder failed due to: ' + status);
+        }
+    });
+}
+
+function setSearchToCurrentLoc() {
+  console.log("setting to current location");
+  geocodeLatLng(currentLocation, function(address) {
+    document.getElementById("search").value = address;
+  });
+}
 
 // set the information so the next page can make use of them, and they can be remembered
 function setInformation() {
@@ -90,7 +140,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: getZoom(),
     disableDefaultUI: true,
-    backgroundColor: "#ffd600",
+    backgroundColor: "#ffffff",
     draggable: false,
     disableDoubleClickZoom: true,
     gestureHandling: "none"
@@ -101,14 +151,8 @@ function initMap() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      map.setCenter(currentLocation);
-      var image = 'https://momja.github.io/dineDice/images/white-marker-shadow.png';
-      var marker = new google.maps.Marker({
-        map: map,
-        position: currentLocation,
-        icon: image
-      });
-
+      searchLocation = currentLocation;
+      searchBar();
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
     });
@@ -145,7 +189,7 @@ function setMapOnAll(map) {
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(map);
   }
-  if (typeof cityCircle != 'undefined') {
+  if (typeof cityCircle !== 'undefined') {
         cityCircle.setMap(map);
     }
 }
@@ -167,6 +211,14 @@ function performSearch() {
   nearbyPlaces = [];
   clearMarkers();
   markers = [];
+    map.setCenter(searchLocation);
+    var image = 'https://momja.github.io/dineDice/images/white-marker-shadow.png';
+    var marker = new google.maps.Marker({
+        map: map,
+        position: searchLocation,
+        icon: image
+    });
+
     var radiusOptions = {
         strokeColor: '#FF0000',
         strokeOpacity: 0.1,
@@ -174,13 +226,13 @@ function performSearch() {
         fillColor: '#FF0000',
         fillOpacity: 0.075,
         map: map,
-        center: currentLocation,
+        center: searchLocation,
         radius: searchRadius
     };
     // Add the circle for this city to the map.
     cityCircle = new google.maps.Circle(radiusOptions);
   var request = {
-    location: currentLocation,
+    location: searchLocation,
     radius: searchRadius,
     type: 'restaurant',
     minPriceLevel: min_price,
@@ -195,13 +247,13 @@ function callback(results, status) {
           return;
         }
         for (var i = 0, result; result = results[i]; i++) {
+          nearbyPlaces.push(result);
           addMarker(result);
         }
         findPlace();
 }
 
 function addMarker(place) {
-  nearbyPlaces.push(place);
   var image = 'https://momja.github.io/dineDice/images/pink-marker-shadow.png';
   var marker = new google.maps.Marker({
     map: map,
@@ -240,7 +292,7 @@ function getDistance(place, marker) {
   var matrixService = new google.maps.DistanceMatrixService;
   matrixService.getDistanceMatrix(
     {
-      origins: [currentLocation],
+      origins: [searchLocation],
       destinations: [place.geometry.location],
       travelMode: 'DRIVING',
       unitSystem: google.maps.UnitSystem.IMPERIAL
