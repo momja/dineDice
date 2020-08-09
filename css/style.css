@@ -16,6 +16,10 @@ h1 {
     cursor: pointer;
 }
 
+.gm-style-iw{
+  max-height: 200px;
+}
+
 label {
     cursor: pointer;
     color: #666;
