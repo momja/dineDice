@@ -8,6 +8,10 @@ body {
     font-family: 'Pacifico', Arial, sans-serif;
 }
 
+h1 {
+  font-size: 16px;
+}
+
 #current-location {
     cursor: pointer;
 }
