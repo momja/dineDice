@@ -30,6 +30,7 @@ function onPlaceChanged() {
     if (place.geometry) {
       searchLocation = place.geometry.location;
       map.setCenter(searchLocation);
+      map.panBy(0, -div.offsetHeight/4);
     } else {
         document.getElementById('autocomplete').placeholder = 'Enter a city';
         searchLocation = currentLocation;
@@ -214,6 +215,7 @@ function performSearch() {
   clearMarkers();
   markers = [];
     map.setCenter(searchLocation);
+    map.panBy(0, -div.offsetHeight/4);
     var image = 'https://momja.github.io/dineDice/images/white-marker-shadow.png';
     var marker = new google.maps.Marker({
         map: map,
@@ -274,7 +276,7 @@ function addInfoWindow(marker, option, rating, distance, foodImage, link, price)
   infoWindow.setContent(contentString);
   infoWindow.open(map, marker);
   map.setCenter(marker.getPosition());
-  map.panBy(0, 1000);
+  map.panBy(0, -div.offsetHeight/4);
 }
 
 function findPlace() {
