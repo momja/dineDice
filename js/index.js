@@ -274,7 +274,7 @@ function addInfoWindow(marker, option, rating, distance, foodImage, link, price)
   infoWindow.setContent(contentString);
   infoWindow.open(map, marker)
   map.panTo(marker.getPosition());
-  map.panBy(0, div.offsetHeight/4);
+  map.panBy(0, 1000);
 }
 
 function findPlace() {
