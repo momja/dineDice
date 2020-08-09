@@ -267,7 +267,7 @@ function addMarker(place) {
 
 function addInfoWindow(marker, option, rating, distance, foodImage, link, price) {
   var contentString = `<h1 style='margin:0px;'>${option}</h1>` +
-    `<div><div style='float:right; display:block; padding:0px;'><img src=${foodImage}></div><p>rating: ${rating} <br>distance: ${distance}` +
+    `<div><div style='float:right; display:block;'><img src=${foodImage}></div><p>rating: ${rating} <br>distance: ${distance}` +
     `<br>price: ${price}` +
     `<br><a href=${link}>Directions</a></p></div>`;
 
