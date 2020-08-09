@@ -122,8 +122,10 @@ function convertMilesToMeters(miles) {
   return miles/0.000621371;
 }
 
-$('.outer-div .main .button').on('click', animation);
-$('.outer-div .map-page .back-button').on('click', animation);
+$(document).ready(function() {
+  $('.outer-div .main .button').on('click', animation);
+  $('.outer-div .map-page .back-button').on('click', animation);
+});
 
 function animation() {
   $('.outer-div').toggleClass('clicked');
