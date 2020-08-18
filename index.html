@@ -16,14 +16,14 @@
   <div class="outer-div">
     <div class="main">
       <img src="images/LOGO.png" style="padding-top:20px;" height="100px" alt="Dine Dice"/>
-      <p>location:</p>
+      <p>Location:</p>
       <input type="text" id="search" placeholder="Enter a location">
-      <div onclick="setSearchToCurrentLoc()" id="current-location">use current location</div>
+      <div class="curLocButton" onclick="setSearchToCurrentLoc()" id="current-location">Current Location</div>
       <form>
-        <p>distance: <output id="distance">3 mi</output></p>
+        <p>Distance: <output id="distance">3 mi</output></p>
         <input type="range" min="1" max="60" id="distanceRange" oninput="distance.value = (value/10) + ' mi'">
       </form>
-        <p>price: <output id="price"></output></p>
+        <p>Price: <output id="price"></output></p>
         <label><input type="checkbox" id="price_level_1" value="$" /> <span class="label-text">$</span></label>
         <label><input type="checkbox" id="price_level_2" value="$$" checked/> <span class="label-text">$$</span></label>
         <label><input type="checkbox" id="price_level_3" value="$$$" /> <span class="label-text">$$$</span></label>
